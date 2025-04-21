@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Smart Study Planner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Study Scheduler</h1>
+            <p class="tagline">Your personal study assistant</p>
+        </header>
+        
+        <div class="app-container">
+            <div class="input-section card">
+                <h2><i class="fas fa-plus-circle"></i> Add Study Material</h2>
+                <div class="form-group">
+                    <input type="text" id="subjectInput" placeholder="What do you need to study?">
+                </div>
+                <div class="form-group">
+                    <label for="hoursInput">Estimated hours needed:</label>
+                    <input type="number" id="hoursInput" min="0.5" step="0.5" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="priorityInput">Priority:</label>
+                    <select id="priorityInput">
+                        <option value="high">High (Exam soon)</option>
+                        <option value="medium" selected>Medium (Important)</option>
+                        <option value="low">Low (Background)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="difficultyInput">Difficulty:</label>
+                    <select id="difficultyInput">
+                        <option value="hard">Challenging</option>
+                        <option value="medium" selected>Moderate</option>
+                        <option value="easy">Easy</option>
+                    </select>
+                </div>
+                <button id="addBtn" class="btn-primary">
+                    <i class="fas fa-plus"></i> Add to Study Plan
+                </button>
+            </div>
+            
+            <!-- Subjects List -->
+            <div class="subjects-list card">
+                <h2><i class="fas fa-tasks"></i> Your Study Materials</h2>
+                <div class="filter-controls">
+                    <button id="filterAll" class="btn-filter active">All</button>
+                    <button id="filterHigh" class="btn-filter">High Priority</button>
+                    <button id="filterMedium" class="btn-filter">Medium</button>
+                    <button id="filterLow" class="btn-filter">Low</button>
+                </div>
+                <ul id="subjectList"></ul>
+                <div class="stats">
+                    <span id="totalHours">Total: 0 hours</span>
+                    <span id="completedHours">Completed: 0 hours</span>
+                </div>
+            </div>
+            
+            <!-- Schedule Options -->
+            <div class="schedule-options card">
+                <h2><i class="fas fa-cog"></i> Schedule Settings</h2>
+                <div class="form-group">
+                    <label for="studyDays">Study days available:</label>
+                    <input type="number" id="studyDays" min="1" value="7">
+                </div>
+                <div class="form-group">
+                    <label for="dailyHours">Daily study capacity (hours):</label>
+                    <input type="number" id="dailyHours" min="1" value="2" step="0.5">
+                </div>
+                <div class="form-group">
+                    <label for="energyPeak">My energy peak time:</label>
+                    <select id="energyPeak">
+                        <option value="morning">Morning</option>
+                        <option value="afternoon">Afternoon</option>
+                        <option value="evening" selected>Evening</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="enableSpacedRepetition" checked>
+                        Enable spaced repetition
+                    </label>
+                </div>
+                <button id="generateBtn" class="btn-primary">
+                    <i class="fas fa-magic"></i> Generate Smart Schedule
+                </button>
+            </div>
+        </div>
+        
+        <!-- Schedule Output -->
+        <div class="schedule-output card">
+            <h2><i class="fas fa-calendar-alt"></i> Your Study Schedule</h2>
+            <div class="schedule-controls">
+                <button id="exportBtn" class="btn-secondary">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+                <button id="printBtn" class="btn-secondary">
+                    <i class="fas fa-print"></i> Print
+                </button>
+            </div>
+            <div id="scheduleResult"></div>
+        </div>
+    </div>
+    
+    <!-- Revision Modal -->
+    <div id="revisionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3><i class="fas fa-redo"></i> Schedule Revisions</h3>
+            <div id="revisionSchedule"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
